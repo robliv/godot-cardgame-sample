@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bxhq36gfxx308"]
-
-[node name="Node2D" type="Node2D"]
-
-[node name="Window" type="Window" parent="."]
-
-[node name="Window2" type="Window" parent="."]
