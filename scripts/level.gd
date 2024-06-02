@@ -1,7 +1,10 @@
 extends Node
 
-const CURRENT_LEVEL = 1
-const CURRENT_LEVEL_PATH = "res://scenes/levels/level_1.tscn"
+# Get these from level_controller
+@export var current_level : int
+
+# For setting the game end result true if game was won
+var game_result_win
 
 var player
 var enemy
@@ -19,8 +22,10 @@ var player_defend = false
 var game_over = false
 var new_game = true
 
+signal signal_request_post_game_menu
+
 func _ready():
-	print("func: _ready")
+	print("Level scene starting. Current level set to: " + str(current_level))
 	player = $Player
 	enemy = $Enemy
 	message_label = $CanvasLayer/MessageLabel
@@ -47,7 +52,7 @@ func _ready():
 
 func _on_end_turn_button_pressed():
 	print("End turn button pressed")
-	call_deferred("enemy_turn")	
+	call_deferred("enemy_turn")
 	
 func _on_attack_button_pressed():
 	print("Attack button pressed")
@@ -79,22 +84,24 @@ func enemy_turn():
 		set_strength("enemy")
 		show_message("Player Turn")
 	elif enemy.health < 1:
+		game_result_win = true
 		show_message("Victory!")
 		controls_visible(false)
 		await get_tree().create_timer(5.0).timeout
-		request_next_level()
+		request_post_game_menu()
 	else:
+		game_result_win = false
 		show_message("You died!")
 		controls_visible(false)
 		await get_tree().create_timer(5.0).timeout
-		request_next_level()
+		request_post_game_menu()
 
 func show_message(text):
 	message_label.text = text
 
 # set random strength 1-10 for player or enemy char
 func set_strength(char):
-	var randomStrength = randi_range(1,10)
+	var randomStrength = randi_range(20,30)
 	enemy_strength_meter.text = "Strength:"+str(randomStrength)
 	enemy_strength = randomStrength
 	
@@ -106,11 +113,9 @@ func controls_visible(visible):
 	else:
 		enemy_strength_meter.hide()
 
-func request_next_level():
-	var nextLevelPath = CURRENT_LEVEL_PATH.replace(str(CURRENT_LEVEL), str(CURRENT_LEVEL+1));
-	print("Requesting next level: " + nextLevelPath)
-	emit_signal("request_next_level", nextLevelPath)
-	await get_tree().create_timer(2.0).timeout # man liekas dazreiz ir bug, ja parak leeni ieladejas nakamais
+func request_post_game_menu():
+	print("Requesting post game screen")
+	emit_signal("signal_request_post_game_menu", current_level,game_result_win)
 
 func playAnimation(character, animation):
 	# TODO this code is shit , need to use signal to child node instead to trigger animations
@@ -123,5 +128,7 @@ func playAnimation(character, animation):
 		enemy.playAnimation("attack")
 		player.playAnimation("hurt")
 		await get_tree().create_timer(1.0).timeout
-	player.playAnimation("idle")
-	enemy.playAnimation("idle")
+	#if player:
+		#player.playAnimation("idle")
+	#if enemy:
+		#enemy.playAnimation("idle")

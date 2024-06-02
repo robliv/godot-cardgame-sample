@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c54q3w8x83bvy"]
 
-[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_asws1"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_asws1"]
 [ext_resource type="Texture2D" uid="uid://cn0wo2ob01rp5" path="res://assets/backgrounds/dungeon.png" id="2_adpv3"]
 [ext_resource type="PackedScene" uid="uid://cq1spio55fri5" path="res://scenes/player.tscn" id="3_c1jyx"]
 [ext_resource type="PackedScene" uid="uid://b3fal1tr5tm0n" path="res://scenes/enemy.tscn" id="4_tbyj5"]

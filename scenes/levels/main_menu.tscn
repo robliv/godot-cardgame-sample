@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_blhvv"]
 [ext_resource type="Texture2D" uid="uid://cn0wo2ob01rp5" path="res://assets/backgrounds/dungeon.png" id="2_skytu"]
 
-[node name="level" type="Control"]
+[node name="main_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
