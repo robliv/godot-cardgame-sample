@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://c54q3w8x83bvy"]
+
+[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_asws1"]
+[ext_resource type="Texture2D" uid="uid://cn0wo2ob01rp5" path="res://assets/backgrounds/dungeon.png" id="2_adpv3"]
+[ext_resource type="PackedScene" uid="uid://cq1spio55fri5" path="res://scenes/player.tscn" id="3_c1jyx"]
+[ext_resource type="PackedScene" uid="uid://b3fal1tr5tm0n" path="res://scenes/enemy.tscn" id="4_tbyj5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rr0kr"]
+bg_color = Color(0.235294, 0.203922, 0.168627, 0.713726)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_detail = 10
+
+[node name="level" type="Node2D"]
+script = ExtResource("1_asws1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -41)
+zoom = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+z_index = -1
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(0.187907, 0.210286)
+texture = ExtResource("2_adpv3")
+
+[node name="Player" parent="." instance=ExtResource("3_c1jyx")]
+position = Vector2(-98, 21)
+
+[node name="Enemy" parent="." instance=ExtResource("4_tbyj5")]
+position = Vector2(88, 23)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="DefendButton" type="Button" parent="CanvasLayer"]
+offset_left = -59.0
+offset_top = -10.0
+offset_right = -10.0
+offset_bottom = 12.0
+theme_override_font_sizes/font_size = 10
+text = "DEFEND"
+
+[node name="AttackButton" type="Button" parent="CanvasLayer"]
+offset_left = -59.0
+offset_top = -34.0
+offset_right = -10.0
+offset_bottom = -12.0
+theme_override_font_sizes/font_size = 10
+text = "ATTACK"
+
+[node name="MessageLabel" type="Label" parent="CanvasLayer"]
+offset_left = -109.0
+offset_top = -108.0
+offset_right = 110.0
+offset_bottom = -78.0
+theme_override_font_sizes/font_size = 10
+text = "TurnText"
+horizontal_alignment = 1
+
+[node name="StrengthEnemy" type="Label" parent="CanvasLayer"]
+offset_left = 56.0
+offset_top = -91.0
+offset_right = 112.0
+offset_bottom = -77.0
+theme_override_font_sizes/font_size = 10
+text = "Power:"
+horizontal_alignment = 1
+
+[node name="StrengthPlayer" type="Label" parent="CanvasLayer"]
+offset_left = -65.0
+offset_top = -54.0
+offset_right = -7.0
+offset_bottom = -36.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_rr0kr")
+text = "POWER: "

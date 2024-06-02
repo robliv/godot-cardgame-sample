@@ -27,6 +27,22 @@ position = Vector2(88, 23)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
+[node name="NewGameButton" type="Button" parent="CanvasLayer"]
+offset_left = -59.0
+offset_top = -33.0
+offset_right = -10.0
+offset_bottom = -11.0
+theme_override_font_sizes/font_size = 10
+text = "ATTACK"
+
+[node name="AttackButton" type="Button" parent="CanvasLayer"]
+offset_left = -31.0
+offset_top = -66.0
+offset_right = 32.0
+offset_bottom = -44.0
+theme_override_font_sizes/font_size = 10
+text = "NEW GAME"
+
 [node name="DefendButton" type="Button" parent="CanvasLayer"]
 offset_left = -59.0
 offset_top = -10.0
@@ -35,35 +51,10 @@ offset_bottom = 12.0
 theme_override_font_sizes/font_size = 10
 text = "DEFEND"
 
-[node name="AttackButton" type="Button" parent="CanvasLayer"]
-offset_left = -59.0
-offset_top = -32.0
-offset_right = -10.0
-offset_bottom = -10.0
-theme_override_font_sizes/font_size = 10
-text = "ATTACK"
-
-[node name="NewGameButton" type="Button" parent="CanvasLayer"]
-offset_left = -31.0
-offset_top = -69.0
-offset_right = 32.0
-offset_bottom = -47.0
-theme_override_font_sizes/font_size = 10
-text = "NEW GAME"
-
-[node name="StartGameButton" type="Button" parent="CanvasLayer"]
-offset_left = -57.0
-offset_top = -73.0
-offset_right = 58.0
-offset_bottom = -51.0
-theme_override_font_sizes/font_size = 10
-text = "ENTER THE DUNGEON"
-
 [node name="MessageLabel" type="Label" parent="CanvasLayer"]
-offset_left = -109.0
-offset_top = -108.0
-offset_right = 110.0
-offset_bottom = -78.0
-theme_override_font_sizes/font_size = 10
+offset_left = -61.0
+offset_top = -107.0
+offset_right = 60.0
+offset_bottom = -84.0
 text = "TurnText"
 horizontal_alignment = 1

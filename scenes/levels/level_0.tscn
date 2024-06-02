@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://4211k16ws257"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_blhvv"]
+[ext_resource type="Texture2D" uid="uid://cn0wo2ob01rp5" path="res://assets/backgrounds/dungeon.png" id="2_skytu"]
+
+[node name="level" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_blhvv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="NewGameButton" type="Button" parent="CanvasLayer"]
+offset_left = -57.0
+offset_top = -73.0
+offset_right = 58.0
+offset_bottom = -51.0
+theme_override_font_sizes/font_size = 10
+text = "ENTER THE DUNGEON"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -41)
+zoom = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+z_index = -1
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(0.187907, 0.210286)
+texture = ExtResource("2_skytu")
