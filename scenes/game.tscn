@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxhq36gfxx308"]
+[gd_scene load_steps=6 format=3 uid="uid://bxhq36gfxx308"]
 
 [ext_resource type="Texture2D" uid="uid://cn0wo2ob01rp5" path="res://assets/backgrounds/dungeon.png" id="1_ceqgp"]
 [ext_resource type="PackedScene" uid="uid://cq1spio55fri5" path="res://scenes/player.tscn" id="1_psnkm"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_qqxnf"]
 [ext_resource type="PackedScene" uid="uid://b3fal1tr5tm0n" path="res://scenes/enemy.tscn" id="2_tt31u"]
+[ext_resource type="PackedScene" uid="uid://c67ten8xmbapy" path="res://scenes/card.tscn" id="5_2vwrx"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qqxnf")
@@ -67,3 +68,6 @@ offset_bottom = -78.0
 theme_override_font_sizes/font_size = 10
 text = "TurnText"
 horizontal_alignment = 1
+
+[node name="Card" parent="." instance=ExtResource("5_2vwrx")]
+scale = Vector2(0.75, 0.5)

@@ -8,6 +8,8 @@ var message_label
 var player_healthbar
 var enemy_healthbar
 
+var card
+
 var player_turn = true
 var player_defend = false
 var game_over = false
@@ -22,6 +24,7 @@ func _ready():
 	message_label = $CanvasLayer/MessageLabel
 	player_healthbar = $Player/HealthBar
 	enemy_healthbar = $Enemy/HealthBar
+	card = $Card
 	
 	# Connect signals
 	if attack_button and defend_button:
