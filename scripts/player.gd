@@ -35,6 +35,7 @@ func trigger_hurt():
 func take_damage(amount):
 	health -= amount
 	$HealthBar.value = health
+	play_animation("hurt")
 	if health <= 0:
 		die()
 	

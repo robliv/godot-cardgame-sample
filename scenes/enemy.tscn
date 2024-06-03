@@ -148,10 +148,34 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j6xw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6xw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6xw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6xw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6xw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6xw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6xw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6xw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6xw5")
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -211,6 +235,8 @@ script = ExtResource("1_t74vh")
 position = Vector2(0, -64)
 sprite_frames = SubResource("SpriteFrames_k8eug")
 animation = &"death"
+frame = 10
+frame_progress = 1.0
 flip_h = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]

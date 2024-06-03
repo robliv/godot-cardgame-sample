@@ -9,6 +9,8 @@ signal reparent_requested(which_card_ui: CardUI)
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var card_state_machine: CardStateMachine = $CardStateMachine
 @onready var targets: Array[Node] = []
+@onready var level_scene = get_parent().get_parent()
+signal signal_trigger_damage
 
 func _ready() -> void:
 	card_state_machine.init(self)
@@ -18,8 +20,10 @@ func play() -> void:
 		if not target:
 			continue
 		if target is Enemy:
-			target.take_damage(10)
-			target.play_animation("hurt")
+			#target.take_damage(10)
+			var damage : int = 10
+			print("emitting card damage signal to level scene")
+			emit_signal("signal_trigger_damage", damage)
 	queue_free()
 	
 func _input(event: InputEvent) -> void:

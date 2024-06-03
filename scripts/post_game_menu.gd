@@ -26,7 +26,7 @@ func _ready():
 		
 	# Update button and title label based on game result
 	if game_result_win:
-		game_result_label.text = "VICTORY! Level " + str(current_level) + "completed!"
+		game_result_label.text = "VICTORY! Level " + str(current_level) + " completed!"
 		next_level = current_level + 1
 		next_level_button.text = "Continue to level " + str(next_level)
 	else:
