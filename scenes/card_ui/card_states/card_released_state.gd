@@ -12,7 +12,7 @@ func enter() -> void:
 
 func on_input(_event: InputEvent) -> void:
 	if played:
-		queue_free()
 		return
 		
+	
 	transition_requested.emit(self, CardState.State.BASE)
