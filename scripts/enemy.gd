@@ -1,4 +1,5 @@
-extends CharacterBody2D
+class_name Enemy
+extends Area2D
 
 var health = 100
 

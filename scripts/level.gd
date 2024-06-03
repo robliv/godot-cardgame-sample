@@ -3,6 +3,8 @@ extends Node
 # Get these from level_controller
 @export var current_level : int
 
+@export var handSize: int = 5
+
 # For setting the game end result true if game was won
 var game_result_win
 
@@ -15,7 +17,10 @@ var enemy_healthbar
 var enemy_strength
 var enemy_strength_meter
 
-var card = load("res://scenes/card.tscn")
+var card_ui = load("res://scenes/card_ui/card_ui.tscn")
+
+var hand_ui
+
 var end_turn
 
 var player_turn = true
@@ -36,6 +41,7 @@ func _ready():
 	enemy_healthbar = $Enemy/HealthBar
 	enemy_strength_meter = $CanvasLayer/StrengthEnemy
 	end_turn = $CanvasLayer/EndTurn
+	hand_ui = $CanvasLayer/Hand
 	
 	set_strength("enemy")
 	# Connect signals
@@ -44,14 +50,14 @@ func _ready():
 	else:
 		print("Error: Buttons are not correctly referenced")
 	update_banner("Your turn!")
+	call_deferred("player_turn_started")
 	
-	# Generate cards in hand
-	for n in 5:
-		print(str("Times:",n))
-		var scene_instance = card.instantiate()
-		scene_instance.set_name(str("card_",n))
-		add_child(scene_instance)
-		scene_instance.position = Vector2(n+(n*15)-30, 0) 
+func player_turn_started():
+	print("Player turn started")
+	# draw cards
+	for n in handSize:
+		var instance = card_ui.instantiate()
+		hand_ui.add_child(instance)
 
 func _on_end_turn_button_pressed():
 	print("End turn button pressed")
@@ -80,6 +86,7 @@ func enemy_turn():
 		controls_visible(false)
 		await get_tree().create_timer(5.0).timeout
 		request_post_game_menu()
+	call_deferred("player_turn_started")
 
 func update_banner(text):
 	banner_label.text = text

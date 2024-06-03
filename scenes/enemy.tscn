@@ -203,7 +203,8 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnxo5"]
 height = 58.0
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_t74vh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -211,10 +212,6 @@ position = Vector2(0, -64)
 sprite_frames = SubResource("SpriteFrames_k8eug")
 animation = &"death"
 flip_h = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -29)
-shape = SubResource("CapsuleShape2D_hnxo5")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -32.0
@@ -227,3 +224,9 @@ theme_override_styles/fill = ExtResource("8_h0ecy")
 step = 1.0
 value = 100.0
 rounded = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -29)
+shape = SubResource("CapsuleShape2D_hnxo5")
+
+[connection signal="input_event" from="." to="CollisionShape2D" method="_on_enemy_input_event"]
