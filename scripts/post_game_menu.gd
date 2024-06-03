@@ -30,9 +30,9 @@ func _ready():
 		next_level = current_level + 1
 		next_level_button.text = "Continue to level " + str(next_level)
 	else:
-		game_result_label.text = "You lost! Level " + str(current_level) + "failed!"
+		game_result_label.text = "YOU LOST ON LEVEL " + str(current_level) + "!"
 		next_level = 0
-		next_level_button.text = "Continue to main menu"
+		next_level_button.text = "GO TO MAIN MENU"
 	next_level_button.pressed.connect(self._on_next_level_button_pressed)
 
 func _on_next_level_button_pressed():

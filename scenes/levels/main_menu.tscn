@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://4211k16ws257"]
+[gd_scene load_steps=5 format=3 uid="uid://4211k16ws257"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_blhvv"]
 [ext_resource type="Texture2D" uid="uid://cn0wo2ob01rp5" path="res://assets/backgrounds/dungeon.png" id="2_skytu"]
+[ext_resource type="FontFile" uid="uid://bow1obo1b16wm" path="res://assets/fonts/PixelOperator8.ttf" id="2_t8dpu"]
+
+[sub_resource type="Theme" id="Theme_20ju1"]
+default_font = ExtResource("2_t8dpu")
+default_font_size = 8
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -20,7 +25,7 @@ offset_left = -57.0
 offset_top = -73.0
 offset_right = 58.0
 offset_bottom = -51.0
-theme_override_font_sizes/font_size = 10
+theme = SubResource("Theme_20ju1")
 text = "ENTER THE DUNGEON"
 
 [node name="Camera2D" type="Camera2D" parent="."]

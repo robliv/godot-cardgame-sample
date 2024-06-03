@@ -4,18 +4,16 @@ const MAIN_MENU_PATH = "res://scenes/levels/main_menu.tscn"
 const POST_GAME_MENU_PATH = "res://scenes/levels/post_game_screen.tscn"
 const LEVEL_SCENE_PATH = "res://scenes/levels/level.tscn"
 
-@onready var current_child: Node = null
-
 func _ready():
 	# Game starts here, loads main menu scene
 	load_main_menu()
-	
+
 func load_main_menu():
 	print("Loading main menu: " + MAIN_MENU_PATH)
 	remove_all_child_scenes()
 	var scene = load(MAIN_MENU_PATH)
 	var scene_instance = scene.instantiate()
-	scene_instance.current_level = 1
+	scene_instance.current_level = 0
 	add_child(scene_instance)
 	$main_menu.request_next_level.connect(_on_request_load_level)
 	
@@ -58,4 +56,7 @@ func _on_request_load_post_game(current_level_id: int, game_result_win: bool):
 
 func _on_request_load_level(next_level_id: int):
 	print("Received next level request: " + str(next_level_id))
-	load_level(next_level_id)
+	if next_level_id != 0:
+		load_level(next_level_id)
+	else:
+		load_main_menu()
