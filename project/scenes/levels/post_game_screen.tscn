@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwk0wjsq7nknd"]
+
+[ext_resource type="Script" path="res://scripts/post_game_menu.gd" id="1_gs6ey"]
+[ext_resource type="Texture2D" uid="uid://cn0wo2ob01rp5" path="res://assets/backgrounds/dungeon.png" id="2_ux4ky"]
+[ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="2_v6117"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5httj"]
+bg_color = Color(0.168627, 0.180392, 0.172549, 0.827451)
+
+[node name="post_game_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gs6ey")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="NextLevelButton" type="Button" parent="CanvasLayer"]
+offset_left = -73.0
+offset_right = 74.0
+offset_bottom = 17.0
+theme = ExtResource("2_v6117")
+text = "NEXT LEVEL"
+
+[node name="StatsLabel" type="Label" parent="CanvasLayer"]
+offset_left = -73.0
+offset_top = -74.0
+offset_right = 74.0
+offset_bottom = -9.0
+theme = ExtResource("2_v6117")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5httj")
+text = "
+STATS
+Damage dealt: x
+Cards used: x
+XP gained: x
+"
+horizontal_alignment = 1
+
+[node name="GameResultLabel" type="Label" parent="CanvasLayer"]
+offset_left = -93.0
+offset_top = -100.0
+offset_right = 93.0
+offset_bottom = -82.0
+theme = ExtResource("2_v6117")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5httj")
+text = "LEVEL X COMPLETE/FAILED
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -41)
+zoom = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+visible = false
+z_index = -1
+position = Vector2(-1.9387e-26, 0)
+scale = Vector2(0.187907, 0.210286)
+texture = ExtResource("2_ux4ky")

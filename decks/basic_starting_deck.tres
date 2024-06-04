@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="CardPile" load_steps=4 format=3 uid="uid://2yc7girmm1cj"]
-
-[ext_resource type="Script" path="res://scenes/models/card_pile.gd" id="1_cm6rp"]
-[ext_resource type="Resource" uid="uid://drq45m43hjpth" path="res://cards/basic_attack.tres" id="1_mhvc6"]
-[ext_resource type="Resource" uid="uid://ccpcw3gsac1ye" path="res://cards/basic_block.tres" id="2_p80sa"]
-
-[resource]
-script = ExtResource("1_cm6rp")
-cards = Array[Resource("res://scenes/models/card.gd")]([ExtResource("1_mhvc6"), ExtResource("1_mhvc6"), ExtResource("1_mhvc6"), ExtResource("1_mhvc6"), ExtResource("1_mhvc6"), ExtResource("2_p80sa"), ExtResource("2_p80sa"), ExtResource("2_p80sa"), ExtResource("2_p80sa"), ExtResource("2_p80sa")])

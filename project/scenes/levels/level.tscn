@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://c54q3w8x83bvy"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_asws1"]
+[ext_resource type="Texture2D" uid="uid://cn0wo2ob01rp5" path="res://assets/backgrounds/dungeon.png" id="2_adpv3"]
+[ext_resource type="PackedScene" uid="uid://cq1spio55fri5" path="res://scenes/player.tscn" id="3_c1jyx"]
+[ext_resource type="PackedScene" uid="uid://b3fal1tr5tm0n" path="res://scenes/enemy.tscn" id="4_tbyj5"]
+[ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="5_fuffh"]
+[ext_resource type="Script" path="res://scenes/ui/hand.gd" id="6_m648t"]
+
+[node name="level" type="Node2D"]
+script = ExtResource("1_asws1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -41)
+zoom = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+z_index = -1
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(0.187907, 0.210286)
+texture = ExtResource("2_adpv3")
+
+[node name="Player" parent="." instance=ExtResource("3_c1jyx")]
+position = Vector2(-97, 18)
+
+[node name="Enemy" parent="." instance=ExtResource("4_tbyj5")]
+position = Vector2(85, 18)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["ui_layer"]]
+follow_viewport_enabled = true
+
+[node name="BannerLabel" type="Label" parent="CanvasLayer"]
+offset_left = -76.0
+offset_top = -112.0
+offset_right = 76.0
+offset_bottom = -89.0
+theme = ExtResource("5_fuffh")
+text = "TurnText"
+horizontal_alignment = 1
+
+[node name="StrengthEnemy" type="Label" parent="CanvasLayer"]
+offset_left = 46.0
+offset_top = -76.0
+offset_right = 120.0
+offset_bottom = -65.0
+theme = ExtResource("5_fuffh")
+text = "Strength:"
+horizontal_alignment = 1
+
+[node name="EndTurn" type="Button" parent="CanvasLayer"]
+offset_left = 102.0
+offset_top = 17.0
+offset_right = 170.0
+offset_bottom = 49.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("5_fuffh")
+theme_override_font_sizes/font_size = 8
+text = "End turn"
+
+[node name="LevelNameLabel" type="Label" parent="CanvasLayer"]
+offset_left = -135.0
+offset_top = -111.0
+offset_right = -75.0
+offset_bottom = -100.0
+theme = ExtResource("5_fuffh")
+text = "Level 1"
+
+[node name="Hand" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = -80.0
+offset_right = 70.0
+offset_bottom = 30.0
+alignment = 1
+script = ExtResource("6_m648t")
+
+[connection signal="child_entered_tree" from="CanvasLayer/Hand" to="CanvasLayer/Hand" method="_on_child_entered_tree"]
