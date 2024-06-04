@@ -19,6 +19,10 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/coi_serviceworker/plugin.cfg")
+
 [input]
 
 right_mouse={
