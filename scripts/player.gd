@@ -2,6 +2,15 @@ extends CharacterBody2D
 
 var health = 100
 
+@export var starting_deck: CardPile
+@export var cards_per_turn: int
+@export var max_mana: int
+
+var mana: int : set = set_mana
+var deck: CardPile
+var discard: CardPile
+var draw_pile: CardPile
+
 @onready var anim_player = $AnimatedSprite2D
 var is_attacking = false
 var is_hurting = false
@@ -43,5 +52,14 @@ func die():
 	anim_player.play("death")
 	await get_tree().create_timer(1.0).timeout
 	anim_player.pause()
+	
+func set_mana(value: int) -> void:
+	mana = value
+
+func reset_mana() -> void:
+	self.mana = max_mana
+
+func can_play_card(card: Card) -> bool:
+	return mana >= card.cost
 	
 
