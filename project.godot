@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Game"
+config/name="CardGame"
 run/main_scene="res://scenes/level_controller.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
