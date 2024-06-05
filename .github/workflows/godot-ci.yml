@@ -45,4 +45,4 @@ jobs:
         with:
           branch: gh-pages
           folder: build/web
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          ssh-key: ${{ secrets.DEPLOY_KEY }} 
