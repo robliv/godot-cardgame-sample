@@ -2,7 +2,7 @@ name: "Build and Deploy to GH Pages"
 on: 
   push:
     branches:
-      - gh-pages
+      - main
 
 env:
   GODOT_VERSION: 4.2.2
@@ -43,16 +43,3 @@ jobs:
       - name: GitHub Pages Deployment
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          branch: gh-pages
-          folder: build/web
-          ssh-key: ${{ secrets.DEPLOY_KEY }} 
-      # - name: Install rsync and ssh
-      #   run: |
-      #     apt-get update && apt-get install -y rsync ssh
-      # - name: Deploy to GitHub Pages
-      #   uses: JamesIves/github-pages-deploy-action@releases/v4
-      #   with:
-      #     branch: gh-pages
-      #     folder: build/web
-      #     ssh-key: ${{ secrets.DEPLOY_KEY }}           
