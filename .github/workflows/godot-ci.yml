@@ -35,6 +35,8 @@ jobs:
           mkdir -v -p build/web
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "HTML5" ../build/web/index.html
+      - name: check perms
+        run: ls -latr ../build/web/
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
