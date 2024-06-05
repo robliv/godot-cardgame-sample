@@ -2,19 +2,22 @@ name: "Build and Deploy to GH Pages"
 on: 
   push:
     branches:
-      - main
+      - gh-pages
 
 env:
   GODOT_VERSION: 4.2.2
   EXPORT_NAME: CardGame
   PROJECT_PATH: project
 
-permissions:
-  contents: write
-
 jobs:
   export-web:
     name: Web Export
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.2.2
@@ -35,14 +38,21 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: web
+          name: github-pages
           path: build/web
-      - name: Install rsync and ssh
-        run: |
-          apt-get update && apt-get install -y rsync ssh
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@releases/v4
+      - name: GitHub Pages Deployment
+        id: deployment
+        uses: actions/deploy-pages@v4
         with:
           branch: gh-pages
           folder: build/web
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          ssh-key: ${{ secrets.DEPLOY_KEY }} 
+      # - name: Install rsync and ssh
+      #   run: |
+      #     apt-get update && apt-get install -y rsync ssh
+      # - name: Deploy to GitHub Pages
+      #   uses: JamesIves/github-pages-deploy-action@releases/v4
+      #   with:
+      #     branch: gh-pages
+      #     folder: build/web
+      #     ssh-key: ${{ secrets.DEPLOY_KEY }}           
