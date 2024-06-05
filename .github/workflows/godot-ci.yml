@@ -8,12 +8,10 @@ env:
   GODOT_VERSION: 4.2.2
   EXPORT_NAME: CardGame
   PROJECT_PATH: project
-  ENV: dev
 
 jobs:
   export-web:
     name: Web Export
-    environment: $ENV
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.2.2
