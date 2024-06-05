@@ -36,12 +36,12 @@ jobs:
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "HTML5" ../build/web/index.html
       - name: check perms
-        run: ls -latr ../build/web/
+        run: ls -latr build/web/
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: build/web
+          path: releases
       - name: GitHub Pages Deployment
         id: deployment
         uses: actions/deploy-pages@v4
