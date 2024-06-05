@@ -8,7 +8,6 @@ var is_attacking = false
 var is_hurting = false
 
 func _ready():
-	$HealthBar.value = health
 	anim_player.play("idle")
 	
 func play_animation(animation):
@@ -35,7 +34,6 @@ func trigger_hurt_anim():
 
 func take_damage(amount):
 	health -= amount
-	$HealthBar.value = health
 	play_animation("hurt")
 	if health <= 0:
 		die()

@@ -1,13 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://b3fal1tr5tm0n"]
+[gd_scene load_steps=30 format=3 uid="uid://b3fal1tr5tm0n"]
 
 [ext_resource type="Texture2D" uid="uid://2pgxobol5bte" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Idle.png" id="1_6cee6"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_t74vh"]
 [ext_resource type="Texture2D" uid="uid://dujosfls5nrp8" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Attack_1.png" id="2_fqpgi"]
 [ext_resource type="Texture2D" uid="uid://barcyuc157ghc" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Hurt.png" id="4_ovulh"]
 [ext_resource type="Texture2D" uid="uid://bevixdcifc6tx" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Dead.png" id="5_tdrox"]
-[ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="6_wapov"]
-[ext_resource type="StyleBox" uid="uid://bxleall8875js" path="res://ui/hp_stylebox_bg.tres" id="7_1fi8e"]
-[ext_resource type="StyleBox" uid="uid://bi4335vrvogf5" path="res://ui/hp_stylebox_fg.tres" id="8_h0ecy"]
+[ext_resource type="PackedScene" uid="uid://bqcv8w8hvb124" path="res://scenes/stats_ui.tscn" id="9_bbert"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dcpca"]
 atlas = ExtResource("2_fqpgi")
@@ -239,20 +237,15 @@ frame = 10
 frame_progress = 1.0
 flip_h = true
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -32.0
-offset_top = -82.0
-offset_right = 25.0
-offset_bottom = -70.0
-theme = ExtResource("6_wapov")
-theme_override_styles/background = ExtResource("7_1fi8e")
-theme_override_styles/fill = ExtResource("8_h0ecy")
-step = 1.0
-value = 100.0
-rounded = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -29)
 shape = SubResource("CapsuleShape2D_hnxo5")
+
+[node name="StatsUI" parent="." instance=ExtResource("9_bbert")]
+offset_left = -39.0
+offset_top = -77.0
+offset_right = 107.0
+offset_bottom = -45.0
+scale = Vector2(0.5, 0.5)
 
 [connection signal="input_event" from="." to="CollisionShape2D" method="_on_enemy_input_event"]

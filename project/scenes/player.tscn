@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cq1spio55fri5"]
+[gd_scene load_steps=31 format=3 uid="uid://cq1spio55fri5"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_nsufn"]
 [ext_resource type="Texture2D" uid="uid://cvmx1k34fct1r" path="res://assets/characters/tempCharacters/Knight_1/IdleFixed.png" id="1_t6b54"]
@@ -6,9 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ddjyrv1clc64f" path="res://assets/characters/tempCharacters/Knight_1/Defend.png" id="3_b04l2"]
 [ext_resource type="Texture2D" uid="uid://bl5puq52ejnuc" path="res://assets/characters/tempCharacters/Knight_1/Dead.png" id="3_d7lo4"]
 [ext_resource type="Texture2D" uid="uid://ccaq2rwxon04c" path="res://assets/characters/tempCharacters/Knight_1/Hurt.png" id="3_qplww"]
-[ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="6_37k88"]
-[ext_resource type="StyleBox" uid="uid://bxleall8875js" path="res://ui/hp_stylebox_bg.tres" id="7_bulja"]
-[ext_resource type="StyleBox" uid="uid://bi4335vrvogf5" path="res://ui/hp_stylebox_fg.tres" id="8_ekxed"]
+[ext_resource type="PackedScene" uid="uid://bqcv8w8hvb124" path="res://scenes/stats_ui.tscn" id="10_mjgra"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i31f5"]
 atlas = ExtResource("2_alqyu")
@@ -203,7 +201,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnxo5"]
 height = 58.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_nsufn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -217,14 +215,10 @@ frame_progress = 1.0
 position = Vector2(-3, -29)
 shape = SubResource("CapsuleShape2D_hnxo5")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -32.0
-offset_top = -82.0
-offset_right = 25.0
-offset_bottom = -70.0
-theme = ExtResource("6_37k88")
-theme_override_styles/background = ExtResource("7_bulja")
-theme_override_styles/fill = ExtResource("8_ekxed")
-step = 1.0
-value = 100.0
-rounded = true
+[node name="StatsUI" parent="." instance=ExtResource("10_mjgra")]
+clip_contents = true
+offset_left = -28.0
+offset_top = -78.0
+offset_right = 68.0
+offset_bottom = -46.0
+scale = Vector2(0.5, 0.5)

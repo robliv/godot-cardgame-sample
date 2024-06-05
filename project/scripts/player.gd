@@ -1,23 +1,37 @@
+class_name Player
 extends CharacterBody2D
-
-var health = 100
-
-@export var starting_deck: CardPile
-@export var cards_per_turn: int
-@export var max_mana: int
-
-var mana: int : set = set_mana
-var deck: CardPile
-var discard: CardPile
-var draw_pile: CardPile
 
 @onready var anim_player = $AnimatedSprite2D
 var is_attacking = false
 var is_hurting = false
 
+@export var stats: CharacterStats : set = set_character_stats
+@onready var stats_ui: StatsUI = $StatsUI
+
 func _ready():
-	$HealthBar.value = health
 	anim_player.play("idle")
+	
+func set_character_stats(value: CharacterStats) -> void:
+	stats = value
+	
+	if not stats.stats_changed.is_connected(update_stats):
+		stats.stats_changed.connect(update_stats)
+
+	update_player()
+
+
+func update_player() -> void:
+	if not stats is CharacterStats: 
+		return
+	if not is_inside_tree(): 
+		await ready
+	update_stats()
+
+
+func update_stats() -> void:
+	print(str("health", stats.health))
+	print(str("max_health", stats.max_health))
+	stats_ui.update_stats(stats)
 	
 func play_animation(animation):
 	if animation == "attack" and not is_attacking:
@@ -41,25 +55,16 @@ func trigger_hurt():
 	is_hurting = false
 	anim_player.play("idle")
 
-func take_damage(amount):
-	health -= amount
-	$HealthBar.value = health
-	play_animation("hurt")
-	if health <= 0:
+func take_damage(damage: int) -> void:
+	if stats.health <= 0:
+		return
+	stats.take_damage(damage)
+	if stats.health <= 0:
 		die()
 	
 func die():
 	anim_player.play("death")
 	await get_tree().create_timer(1.0).timeout
 	anim_player.pause()
-	
-func set_mana(value: int) -> void:
-	mana = value
-
-func reset_mana() -> void:
-	self.mana = max_mana
-
-func can_play_card(card: Card) -> bool:
-	return mana >= card.cost
 	
 

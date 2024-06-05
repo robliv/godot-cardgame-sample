@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=3 format=3 uid="uid://bpotk0iawswxw"]
+
+[ext_resource type="Script" path="res://scripts/resources/character_stats.gd" id="1_6amew"]
+[ext_resource type="Resource" uid="uid://qd7wl0mipf36" path="res://characters/basic_character/decks/basic_starting_deck.tres" id="2_7364e"]
+
+[resource]
+script = ExtResource("1_6amew")
+starting_deck = ExtResource("2_7364e")
+cards_per_turn = 3
+max_mana = 3
+max_health = 45

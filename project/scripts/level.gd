@@ -17,10 +17,8 @@ var banner_label
 var level_name_label
 var player_healthbar
 var enemy_healthbar
-var enemy_strength
-var enemy_strength_meter
 
-var card_ui = load("res://scenes/card_ui/card_ui.tscn")
+var card_ui = load("res://scenes/card_ui.tscn")
 
 var hand_ui
 
@@ -42,7 +40,6 @@ func _ready():
 	level_name_label.text = "LEVEL "+str(current_level)
 	player_healthbar = $Player/HealthBar
 	enemy_healthbar = $Enemy/HealthBar
-	enemy_strength_meter = $CanvasLayer/StrengthEnemy
 	end_turn = $CanvasLayer/EndTurn
 	hand_ui = $CanvasLayer/Hand
 	set_enemy_damage()
@@ -73,21 +70,21 @@ func _on_end_turn_button_pressed():
 
 func enemy_turn():
 	await get_tree().create_timer(0.5).timeout # cinematic pause
-	damage_player(enemy_strength)
+	# damage_player(enemy_strength)
 	player_turn = true
 	set_enemy_damage()
 	call_deferred("player_turn_started")
 
 func damage_player(damage: int):
 	enemy.play_animation("attack")
-	player.take_damage(enemy_strength)
+	# player.take_damage(enemy_strength)
 	update_banner("Enemy hit you for " + str(damage) + " damage")
 	# check if player still alive
 	if player.health < 0:
 		# player is dead, end level
 		game_result_win = false
 		update_banner("You died!")
-		controls_visible(false)
+		# controls_visible(false)
 		await get_tree().create_timer(4.0).timeout
 		request_post_game_menu()
 		
@@ -102,7 +99,7 @@ func damage_enemy(damage: int):
 		# enemy is dead, end level
 		game_result_win = true
 		update_banner("Victory! You destroyed the enemy!")
-		controls_visible(false)
+		# controls_visible(false)
 		await get_tree().create_timer(4.0).timeout
 		request_post_game_menu()
 	
@@ -113,20 +110,8 @@ func update_banner(text):
 func set_enemy_damage():
 	var base_damage = randi_range(15,30)
 	var total_damage = base_damage + round(current_level * DIFFICULTY_CONSTANT)
-	enemy_strength_meter.text = "⚔ "+str(total_damage)
-	enemy_strength = total_damage
-	
-# Toggles visibility of attack and defend button controls
-func controls_visible(visible):
-	enemy_strength_meter = $CanvasLayer/StrengthEnemy
-	if visible:
-		enemy_strength_meter.show()
-		hand_ui.show()
-		end_turn.show()
-	else:
-		enemy_strength_meter.hide()
-		hand_ui.hide()
-		end_turn.hide()
+	# enemy_strength_meter.text = "⚔ "+str(total_damage)
+	# enemy_strength = total_damage
 
 func request_post_game_menu():
 	print("Requesting post game screen")

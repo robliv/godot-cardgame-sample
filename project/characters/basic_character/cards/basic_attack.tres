@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://drq45m43hjpth"]
+
+[ext_resource type="Texture2D" uid="uid://b2s5n54g0ev23" path="res://assets/cards/icons/simple_attck.png" id="1_vw4wy"]
+[ext_resource type="Script" path="res://scripts/resources/card.gd" id="1_won1s"]
+
+[resource]
+script = ExtResource("1_won1s")
+id = "1"
+type = 0
+target = 1
+cost = 1
+icon = ExtResource("1_vw4wy")
+tooltip_text = "Deal 6 DMG to a single enemy."
