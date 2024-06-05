@@ -9,6 +9,9 @@ env:
   EXPORT_NAME: CardGame
   PROJECT_PATH: project
 
+permissions:
+  contents: write
+  
 jobs:
   export-web:
     name: Web Export
