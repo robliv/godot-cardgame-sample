@@ -11,7 +11,7 @@ env:
 
 permissions:
   contents: write
-  
+
 jobs:
   export-web:
     name: Web Export
@@ -37,7 +37,7 @@ jobs:
         with:
           name: web
           path: build/web
-      - name: Install rsync
+      - name: Install rsync and ssh
         run: |
           apt-get update && apt-get install -y rsync ssh
       - name: Deploy to GitHub Pages
