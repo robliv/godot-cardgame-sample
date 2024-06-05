@@ -2,7 +2,7 @@ name: "Build and Deploy to GH Pages"
 on: 
   push:
     branches:
-      - main
+      - gh-pages
 
 env:
   GODOT_VERSION: 4.2.2
