@@ -226,7 +226,7 @@ animations = [{
 height = 58.0
 
 [node name="Enemy" type="Area2D"]
-collision_layer = 2
+collision_layer = 4
 script = ExtResource("1_t74vh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

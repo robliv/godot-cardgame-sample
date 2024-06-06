@@ -14,6 +14,10 @@ config/name="CardGame"
 run/main_scene="res://scenes/level_controller.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
+[autoload]
+
+Events="*res://global/events.gd"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
@@ -40,6 +44,7 @@ left_mouse={
 
 2d_physics/layer_1="card_target_selector"
 2d_physics/layer_2="card_drop_area"
+2d_physics/layer_3="enemies"
 
 [rendering]
 

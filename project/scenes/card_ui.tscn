@@ -1,11 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://b482i2r215mbn"]
+[gd_scene load_steps=12 format=3 uid="uid://b482i2r215mbn"]
 
 [ext_resource type="Script" path="res://scripts/cards/card_ui.gd" id="1_fs2vq"]
+[ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="1_ywdm1"]
 [ext_resource type="Script" path="res://scripts/cards/card_state_machine.gd" id="3_2gcak"]
+[ext_resource type="StyleBox" uid="uid://bhx8y3s3igf2q" path="res://scenes/dragging_card_style.tres" id="3_fnq8k"]
+[ext_resource type="Texture2D" uid="uid://biqwq0fobu7be" path="res://assets/cards/icons/dmg.png" id="3_uwbtw"]
 [ext_resource type="Script" path="res://scripts/cards/card_states/card_base_state.gd" id="4_folfy"]
 [ext_resource type="Script" path="res://scripts/cards/card_states/card_clicked_state.gd" id="5_la31t"]
 [ext_resource type="Script" path="res://scripts/cards/card_states/card_dragging_state.gd" id="6_6byl5"]
 [ext_resource type="Script" path="res://scripts/cards/card_states/card_released_state.gd" id="7_rnfng"]
+[ext_resource type="Script" path="res://scripts/cards/card_states/card_aiming_state.gd" id="10_4bmas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4c42"]
 size = Vector2(25, 30)
@@ -20,9 +24,10 @@ offset_right = -1127.0
 offset_bottom = -618.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ywdm1")
 script = ExtResource("1_fs2vq")
 
-[node name="Color" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,7 +35,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.435835, 0.559788, 0.296245, 1)
+theme_override_styles/panel = ExtResource("3_fnq8k")
+
+[node name="Cost" type="Label" parent="."]
+layout_mode = 1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 11.0
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_uwbtw")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="DropPointDetector" type="Area2D" parent="."]
 collision_mask = 2
@@ -59,9 +92,9 @@ state = 2
 script = ExtResource("7_rnfng")
 state = 4
 
-[node name="CardHoveredState" type="Node" parent="CardStateMachine"]
-script = ExtResource("7_rnfng")
-state = 4
+[node name="CardAimingState" type="Node" parent="CardStateMachine"]
+script = ExtResource("10_4bmas")
+state = 3
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

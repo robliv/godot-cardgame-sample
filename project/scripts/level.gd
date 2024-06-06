@@ -16,9 +16,11 @@ var level_name_label
 var player_healthbar
 var enemy_healthbar
 
-var card_ui = load("res://scenes/card_ui.tscn")
-
 var hand_ui
+
+var mana_ui
+
+var card_ui = load("res://scenes/card_ui.tscn")
 
 var end_turn
 
@@ -40,23 +42,30 @@ func _ready():
 	enemy_healthbar = $Enemy/HealthBar
 	end_turn = $CanvasLayer/EndTurn
 	hand_ui = $CanvasLayer/Hand
+	mana_ui = $CanvasLayer/ManaUI
 	set_enemy_damage()
 	# Connect signals
+	
+	mana_ui._set_char_stats(player.stats)
+	hand_ui.char_stats = player.stats
+	
 	if end_turn:
 		end_turn.pressed.connect(self._on_end_turn_button_pressed)
 	else:
 		print("Error: Buttons are not correctly referenced")
 	update_banner("Your turn!")
+	player.stats.draw_pile = player.stats.deck.duplicate(true)
+	player.stats.draw_pile.shuffle()
 	call_deferred("player_turn_started")
+	
 	
 func player_turn_started():
 	print("Player turn started")
 	update_banner("Player Turn")
 	# draw cards
 	for n in player.stats.cards_per_turn:
-		var instance = card_ui.instantiate()
-		instance.signal_trigger_damage.connect(_on_signal_trigger_damage)
-		hand_ui.add_child(instance)
+		var card_drawn = player.stats.draw_pile.draw_card()
+		hand_ui.add_card(card_drawn)
 
 func _on_signal_trigger_damage(damage):
 	print("received signal to trigger "+ str(damage)+" damage to enemy")
@@ -78,7 +87,7 @@ func damage_player(damage: int):
 	# player.take_damage(enemy_strength)
 	update_banner("Enemy hit you for " + str(damage) + " damage")
 	# check if player still alive
-	if player.health < 0:
+	if player.stats.health < 0:
 		# player is dead, end level
 		game_result_win = false
 		update_banner("You died!")
@@ -93,7 +102,7 @@ func damage_enemy(damage: int):
 	await get_tree().create_timer(0.5).timeout 
 	update_banner("You hit the enemy for " + str(damage) + " damage")
 	# check if enemy still alive
-	if enemy.health < 1:
+	if enemy.stats.health < 1:
 		# enemy is dead, end level
 		game_result_win = true
 		update_banner("Victory! You destroyed the enemy!")
@@ -114,4 +123,3 @@ func set_enemy_damage():
 func request_post_game_menu():
 	print("Requesting post game screen")
 	emit_signal("signal_request_post_game_menu", current_level,game_result_win)
-

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c54q3w8x83bvy"]
+[gd_scene load_steps=12 format=3 uid="uid://c54q3w8x83bvy"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_asws1"]
 [ext_resource type="Texture2D" uid="uid://cn0wo2ob01rp5" path="res://assets/backgrounds/dungeon.png" id="2_adpv3"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://b3fal1tr5tm0n" path="res://scenes/enemy.tscn" id="4_tbyj5"]
 [ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="5_fuffh"]
 [ext_resource type="Script" path="res://scripts/hand.gd" id="6_m648t"]
+[ext_resource type="Resource" uid="uid://bajj1bjvkp1ah" path="res://enemies/basic_enemy/basic_enemy.tres" id="6_w1u6o"]
+[ext_resource type="PackedScene" uid="uid://n0oe3yw1kh1r" path="res://scenes/mana.tscn" id="7_ighbd"]
+[ext_resource type="PackedScene" uid="uid://brw27jx0n5hvs" path="res://scenes/card_target_selector.tscn" id="7_tx7vl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kd1ws"]
+size = Vector2(159, 123)
 
 [node name="level" type="Node2D"]
 script = ExtResource("1_asws1")
@@ -27,6 +33,18 @@ stats = ExtResource("4_1sc41")
 
 [node name="Enemy" parent="." instance=ExtResource("4_tbyj5")]
 position = Vector2(85, 18)
+stats = ExtResource("6_w1u6o")
+
+[node name="CardTargetSelector" parent="." instance=ExtResource("7_tx7vl")]
+
+[node name="CardDropArea" type="Area2D" parent="."]
+position = Vector2(16, -12)
+scale = Vector2(1.82084, 0.933232)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDropArea"]
+position = Vector2(-8.5, -60.5)
+shape = SubResource("RectangleShape2D_kd1ws")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["ui_layer"]]
 follow_viewport_enabled = true
@@ -59,10 +77,28 @@ theme = ExtResource("5_fuffh")
 text = "Level 1"
 
 [node name="Hand" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = -80.0
-offset_right = 70.0
-offset_bottom = 30.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -608.0
+offset_right = -576.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
 alignment = 1
 script = ExtResource("6_m648t")
 
+[node name="ManaUI" parent="CanvasLayer" instance=ExtResource("7_ighbd")]
+offset_left = -130.0
+offset_top = -633.0
+offset_right = -50.0
+offset_bottom = -593.0
+scale = Vector2(0.5, 0.5)
+char_stats = ExtResource("4_1sc41")
+
 [connection signal="child_entered_tree" from="CanvasLayer/Hand" to="CanvasLayer/Hand" method="_on_child_entered_tree"]
+[connection signal="sort_children" from="CanvasLayer/Hand" to="." method="_on_hand_sort_children"]

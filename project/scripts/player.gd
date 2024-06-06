@@ -29,8 +29,6 @@ func update_player() -> void:
 
 
 func update_stats() -> void:
-	print(str("health", stats.health))
-	print(str("max_health", stats.max_health))
 	stats_ui.update_stats(stats)
 	
 func play_animation(animation):

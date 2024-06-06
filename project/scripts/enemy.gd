@@ -1,14 +1,34 @@
 class_name Enemy
 extends Area2D
 
-var health = 100
-
 @onready var anim_player = $AnimatedSprite2D
 var is_attacking = false
 var is_hurting = false
 
+@export var stats: Stats : set = set_enemy_stats
+@onready var stats_ui: StatsUI = $StatsUI
+
 func _ready():
 	anim_player.play("idle")
+	
+func set_enemy_stats(value: Stats) -> void:
+	stats = value.create_instance()
+	
+	if not stats.stats_changed.is_connected(update_stats):
+		stats.stats_changed.connect(update_stats)
+	
+	update_enemy()
+	
+func update_enemy() -> void:
+	if not stats is Stats: 
+		return
+	if not is_inside_tree(): 
+		await ready
+	
+	update_stats()
+	
+func update_stats() -> void:
+	stats_ui.update_stats(stats)
 	
 func play_animation(animation):
 	if animation == "attack" and not is_attacking:
@@ -33,9 +53,11 @@ func trigger_hurt_anim():
 	anim_player.play("idle")
 
 func take_damage(amount):
-	health -= amount
+	if stats.health <= 0:
+		return
 	play_animation("hurt")
-	if health <= 0:
+	stats.take_damage(amount)
+	if stats.health <= 0:
 		die()
 	
 func die():
