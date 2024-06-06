@@ -2,10 +2,8 @@ extends CardState
 
 var played: bool
 
-
 func enter() -> void:
 	played = false
-	print("awdawdawd")
 	if not card_ui.targets.is_empty():
 		played = true
 		card_ui.play()

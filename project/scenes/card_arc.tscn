@@ -6,6 +6,5 @@ _data = [Vector2(0, 0.2), 0.0, 0.0, 0, 0, Vector2(0.825726, 1), 0.0, 0.0, 0, 0, 
 point_count = 3
 
 [node name="CardArc" type="Line2D"]
-position = Vector2(3, 1)
 width = 4.0
 width_curve = SubResource("Curve_37eqy")
