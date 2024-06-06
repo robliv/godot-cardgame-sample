@@ -3,8 +3,6 @@ extends Node
 # Get these from level_controller
 @export var current_level : int
 
-@export var handSize: int = 5
-
 # Constant to adjust difficulty every level
 const DIFFICULTY_CONSTANT = 5
 
@@ -55,7 +53,7 @@ func player_turn_started():
 	print("Player turn started")
 	update_banner("Player Turn")
 	# draw cards
-	for n in handSize:
+	for n in player.stats.cards_per_turn:
 		var instance = card_ui.instantiate()
 		instance.signal_trigger_damage.connect(_on_signal_trigger_damage)
 		hand_ui.add_child(instance)

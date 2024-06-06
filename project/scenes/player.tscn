@@ -218,7 +218,7 @@ shape = SubResource("CapsuleShape2D_hnxo5")
 [node name="StatsUI" parent="." instance=ExtResource("10_mjgra")]
 clip_contents = true
 offset_left = -28.0
-offset_top = -78.0
+offset_top = -81.0
 offset_right = 68.0
-offset_bottom = -46.0
+offset_bottom = -49.0
 scale = Vector2(0.5, 0.5)

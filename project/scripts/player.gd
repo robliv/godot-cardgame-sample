@@ -12,7 +12,7 @@ func _ready():
 	anim_player.play("idle")
 	
 func set_character_stats(value: CharacterStats) -> void:
-	stats = value
+	stats = value.create_instance()
 	
 	if not stats.stats_changed.is_connected(update_stats):
 		stats.stats_changed.connect(update_stats)
