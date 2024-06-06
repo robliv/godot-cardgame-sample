@@ -43,13 +43,11 @@ jobs:
       - name: GitHub Pages Deployment
         id: deployment
         uses: actions/deploy-pages@v4 
-      - name: Get latest commit message
-        id: commit_message
-        run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
       - name: Send Discord notification
         if: success()
         run: |
+          apt-get update && apt-get install -y curl
           curl -X POST \
             -H "Content-Type: application/json" \
-            -d "{\"content\": \"New version was deployed to GitHub Pages: https://robliv.github.io/godot-cardgame-sample/\nLatest commit message: ${{ steps.commit_message.outputs.message }}\"}" \
+            -d "{\"content\": \"New version was deployed to GitHub Pages: https://robliv.github.io/godot-cardgame-sample/\"}" \
             ${{ secrets.DISCORD_WEBHOOK_URL }}
