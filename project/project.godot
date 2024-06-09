@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 [autoload]
 
 Events="*res://global/events.gd"
+RngManager="*res://scripts/rng_manager.gd"
 
 [editor]
 

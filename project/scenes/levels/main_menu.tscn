@@ -2,11 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_blhvv"]
 [ext_resource type="Texture2D" uid="uid://cn0wo2ob01rp5" path="res://assets/backgrounds/dungeon.png" id="2_skytu"]
-[ext_resource type="FontFile" uid="uid://bow1obo1b16wm" path="res://assets/fonts/PixelOperator8.ttf" id="2_t8dpu"]
-
-[sub_resource type="Theme" id="Theme_20ju1"]
-default_font = ExtResource("2_t8dpu")
-default_font_size = 8
+[ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="3_xd43y"]
+[ext_resource type="StyleBox" uid="uid://cjcquh0xlusj4" path="res://themes/label_bg.tres" id="4_gv5fv"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -21,12 +18,25 @@ script = ExtResource("1_blhvv")
 follow_viewport_enabled = true
 
 [node name="NewGameButton" type="Button" parent="CanvasLayer"]
-offset_left = -57.0
-offset_top = -73.0
-offset_right = 58.0
-offset_bottom = -51.0
-theme = SubResource("Theme_20ju1")
+offset_left = -60.0
+offset_top = -83.0
+offset_right = 61.0
+offset_bottom = -61.0
+theme = ExtResource("3_xd43y")
+theme_override_styles/normal = ExtResource("4_gv5fv")
 text = "ENTER THE DUNGEON"
+
+[node name="Seed" type="TextEdit" parent="CanvasLayer"]
+offset_left = -59.0
+offset_top = -52.0
+offset_right = 60.0
+offset_bottom = -33.0
+theme = ExtResource("3_xd43y")
+theme_override_styles/normal = ExtResource("4_gv5fv")
+placeholder_text = "Seed"
+context_menu_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -41)

@@ -29,6 +29,8 @@ var player_defend = false
 var game_over = false
 var new_game = true
 
+var seed_label
+
 signal signal_request_post_game_menu
 
 func _ready():
@@ -38,11 +40,14 @@ func _ready():
 	banner_label = $CanvasLayer/BannerLabel
 	level_name_label = $CanvasLayer/LevelNameLabel
 	level_name_label.text = "LEVEL "+str(current_level)
-	player_healthbar = $Player/HealthBar
-	enemy_healthbar = $Enemy/HealthBar
+	#player_healthbar = $Player/HealthBar
+	#enemy_healthbar = $Enemy/HealthBar
 	end_turn = $CanvasLayer/EndTurn
 	hand_ui = $CanvasLayer/Hand
 	mana_ui = $CanvasLayer/ManaUI
+
+	seed_label = $CanvasLayer/SeedLabel
+	seed_label.text = "Seed: "+RngManager.current_seed
 	set_enemy_damage()
 	# Connect signals
 	
