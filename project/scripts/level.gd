@@ -29,6 +29,9 @@ var player_defend = false
 var game_over = false
 var new_game = true
 
+var discard_pile
+var draw_pile
+
 var seed_label
 
 signal signal_request_post_game_menu
@@ -45,6 +48,8 @@ func _ready():
 	end_turn = $CanvasLayer/EndTurn
 	hand_ui = $CanvasLayer/Hand
 	mana_ui = $CanvasLayer/ManaUI
+	discard_pile = $CanvasLayer/DiscardPile
+	draw_pile = $CanvasLayer/DrawPile
 
 	seed_label = $CanvasLayer/SeedLabel
 	seed_label.text = "Seed: "+RngManager.current_seed
@@ -61,12 +66,16 @@ func _ready():
 	update_banner("Your turn!")
 	player.stats.draw_pile = player.stats.deck.duplicate(true)
 	player.stats.draw_pile.shuffle()
+	
+	discard_pile.set_card_pile(player.stats.discard)
+	draw_pile.set_card_pile(player.stats.draw_pile)
 	call_deferred("player_turn_started")
 	
 	
 func player_turn_started():
 	print("Player turn started")
 	update_banner("Player Turn")
+	player.stats.reset_mana()
 	# draw cards
 	for n in player.stats.cards_per_turn:
 		var card_drawn = player.stats.draw_pile.draw_card()

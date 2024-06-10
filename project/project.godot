@@ -19,6 +19,10 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 Events="*res://global/events.gd"
 RngManager="*res://scripts/rng_manager.gd"
 
+[display]
+
+window/dpi/allow_hidpi=false
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
