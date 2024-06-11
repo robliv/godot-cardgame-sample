@@ -78,6 +78,11 @@ func player_turn_started():
 	player.stats.reset_mana()
 	# draw cards
 	for n in player.stats.cards_per_turn:
+		if(player.stats.draw_pile.empty()):
+			while not player.stats.discard.empty():
+				player.stats.draw_pile.add_card(player.stats.discard.draw_card())
+				player.stats.draw_pile.shuffle()
+				
 		var card_drawn = player.stats.draw_pile.draw_card()
 		hand_ui.add_card(card_drawn)
 
@@ -87,6 +92,10 @@ func _on_signal_trigger_damage(damage):
 	
 func _on_end_turn_button_pressed():
 	print("End turn button pressed")
+	# discard all cards
+	for card_ui: CardUI in hand_ui.get_children():
+		player.stats.discard.add_card(card_ui.card)
+		hand_ui.discard_card(card_ui)
 	call_deferred("enemy_turn")
 
 func enemy_turn():

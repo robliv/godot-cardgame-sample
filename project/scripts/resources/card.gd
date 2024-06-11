@@ -45,6 +45,7 @@ func play(targets: Array[Node], char_stats: CharacterStats) -> void:
 		apply_effects(targets)
 	else:
 		apply_effects(_get_targets(targets))
+	char_stats.discard.add_card(self)
 
 
 func apply_effects(_targets: Array[Node]) -> void:
