@@ -42,8 +42,6 @@ stats = ExtResource("4_1sc41")
 position = Vector2(85, 18)
 stats = ExtResource("6_w1u6o")
 
-[node name="CardTargetSelector" parent="." instance=ExtResource("7_tx7vl")]
-
 [node name="CardDropArea" type="Area2D" parent="."]
 position = Vector2(16, -12)
 scale = Vector2(1.82084, 0.933232)
@@ -156,6 +154,8 @@ scale = Vector2(0.5, 0.5)
 theme = ExtResource("5_fuffh")
 text = "15
 "
+
+[node name="CardTargetSelector" parent="." groups=["ui_layer"] instance=ExtResource("7_tx7vl")]
 
 [connection signal="child_entered_tree" from="CanvasLayer/Hand" to="CanvasLayer/Hand" method="_on_child_entered_tree"]
 [connection signal="sort_children" from="CanvasLayer/Hand" to="." method="_on_hand_sort_children"]
