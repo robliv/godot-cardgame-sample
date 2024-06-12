@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://b3fal1tr5tm0n"]
+[gd_scene load_steps=31 format=3 uid="uid://b3fal1tr5tm0n"]
 
 [ext_resource type="Texture2D" uid="uid://2pgxobol5bte" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Idle.png" id="1_6cee6"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_t74vh"]
 [ext_resource type="Texture2D" uid="uid://dujosfls5nrp8" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Attack_1.png" id="2_fqpgi"]
 [ext_resource type="Texture2D" uid="uid://barcyuc157ghc" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Hurt.png" id="4_ovulh"]
 [ext_resource type="Texture2D" uid="uid://bevixdcifc6tx" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Dead.png" id="5_tdrox"]
+[ext_resource type="Texture2D" uid="uid://gfgxb5rvsyok" path="res://assets/attack_border.png" id="7_a222k"]
 [ext_resource type="PackedScene" uid="uid://bqcv8w8hvb124" path="res://scenes/stats_ui.tscn" id="9_bbert"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dcpca"]
@@ -247,5 +248,35 @@ offset_top = -77.0
 offset_right = 107.0
 offset_bottom = -45.0
 scale = Vector2(0.5, 0.5)
+
+[node name="AttackIndicator" type="Node2D" parent="."]
+position = Vector2(0, -3)
+
+[node name="AttackBoarder" type="Sprite2D" parent="AttackIndicator"]
+modulate = Color(0.564323, 0, 0.0622423, 1)
+position = Vector2(-15, -50)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_a222k")
+
+[node name="AttackBoarder2" type="Sprite2D" parent="AttackIndicator"]
+modulate = Color(0.564323, 0, 0.0622423, 1)
+position = Vector2(15, -50)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_a222k")
+
+[node name="AttackBoarder3" type="Sprite2D" parent="AttackIndicator"]
+modulate = Color(0.564323, 0, 0.0622423, 1)
+position = Vector2(-15, 0)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_a222k")
+
+[node name="AttackBoarder4" type="Sprite2D" parent="AttackIndicator"]
+modulate = Color(0.564323, 0, 0.0622423, 1)
+position = Vector2(15, 0)
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_a222k")
 
 [connection signal="input_event" from="." to="CollisionShape2D" method="_on_enemy_input_event"]

@@ -96,7 +96,7 @@ func _on_end_turn_button_pressed():
 	for card_ui: CardUI in hand_ui.get_children():
 		player.stats.discard.add_card(card_ui.card)
 		hand_ui.discard_card(card_ui)
-	call_deferred("enemy_turn")
+	call_deferred("enemy_turn")	
 
 func enemy_turn():
 	await get_tree().create_timer(0.5).timeout # cinematic pause

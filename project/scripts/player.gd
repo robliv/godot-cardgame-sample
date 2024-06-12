@@ -11,6 +11,12 @@ var is_hurting = false
 func _ready():
 	anim_player.play("idle")
 	
+func set_target() -> void:
+	pass
+	
+func unset_target() -> void:
+	pass
+	
 func set_character_stats(value: CharacterStats) -> void:
 	stats = value.create_instance()
 	

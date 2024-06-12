@@ -7,9 +7,11 @@ var is_hurting = false
 
 @export var stats: Stats : set = set_enemy_stats
 @onready var stats_ui: StatsUI = $StatsUI
+@onready var attack_indicator: Node2D = $AttackIndicator
 
 func _ready():
 	anim_player.play("idle")
+	attack_indicator.visible = false
 	
 func set_enemy_stats(value: Stats) -> void:
 	stats = value.create_instance()
@@ -26,6 +28,12 @@ func update_enemy() -> void:
 		await ready
 	
 	update_stats()
+	
+func set_target() -> void:
+	attack_indicator.visible = true
+	
+func unset_target() -> void:
+	attack_indicator.visible = false
 	
 func update_stats() -> void:
 	stats_ui.update_stats(stats)

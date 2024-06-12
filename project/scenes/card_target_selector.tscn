@@ -18,6 +18,7 @@ monitorable = false
 shape = SubResource("RectangleShape2D_yx7ft")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 follow_viewport_enabled = true
 
 [node name="CardArc" parent="CanvasLayer" instance=ExtResource("1_8wbht")]

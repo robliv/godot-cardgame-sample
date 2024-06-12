@@ -42,6 +42,8 @@ func play(targets: Array[Node], char_stats: CharacterStats) -> void:
 	char_stats.mana -= cost
 	
 	if is_single_targeted():
+		for target in targets:
+			target.unset_target()
 		apply_effects(targets)
 	else:
 		apply_effects(_get_targets(targets))
