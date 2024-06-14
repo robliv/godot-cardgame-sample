@@ -43,8 +43,6 @@ func _ready():
 	banner_label = $CanvasLayer/BannerLabel
 	level_name_label = $CanvasLayer/LevelNameLabel
 	level_name_label.text = "LEVEL "+str(current_level)
-	#player_healthbar = $Player/HealthBar
-	#enemy_healthbar = $Enemy/HealthBar
 	end_turn = $CanvasLayer/EndTurn
 	hand_ui = $CanvasLayer/Hand
 	mana_ui = $CanvasLayer/ManaUI
@@ -69,6 +67,9 @@ func _ready():
 	
 	discard_pile.set_card_pile(player.stats.discard)
 	draw_pile.set_card_pile(player.stats.draw_pile)
+	
+	Events.draw_cards.connect(_draw_cards)
+	
 	call_deferred("player_turn_started")
 	
 	
@@ -77,14 +78,17 @@ func player_turn_started():
 	update_banner("Player Turn")
 	player.stats.reset_mana()
 	# draw cards
-	for n in player.stats.cards_per_turn:
+	
+	_draw_cards(player.stats.cards_per_turn)
+		
+func _draw_cards(amount: int):
+	for n in amount:
 		if(player.stats.draw_pile.empty()):
 			while not player.stats.discard.empty():
 				player.stats.draw_pile.add_card(player.stats.discard.draw_card())
 				player.stats.draw_pile.shuffle()
 				
-		var card_drawn = player.stats.draw_pile.draw_card()
-		hand_ui.add_card(card_drawn)
+		hand_ui.add_card(player.stats.draw_pile.draw_card())
 
 func _on_signal_trigger_damage(damage):
 	print("received signal to trigger "+ str(damage)+" damage to enemy")

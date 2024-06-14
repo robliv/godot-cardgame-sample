@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dk6f5ew3tnfaw"]
+
+[ext_resource type="Script" path="res://characters/basic_character/cards/basic_draw.gd" id="1_bouol"]
+[ext_resource type="Texture2D" uid="uid://cvqr7wu83j38m" path="res://assets/cards/icons/draw.png" id="1_e3rjn"]
+
+[resource]
+script = ExtResource("1_bouol")
+id = "3"
+type = 1
+target = 0
+cost = 2
+icon = ExtResource("1_e3rjn")
+tooltip_text = "Draw 1 card."
