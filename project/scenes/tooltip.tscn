@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://pr2fel55nppq"]
+
+[ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="1_pqc1u"]
+[ext_resource type="Script" path="res://scenes/tooltip.gd" id="2_v47xg"]
+
+[node name="Tooltip" type="PanelContainer"]
+self_modulate = Color(0.686275, 0.572549, 0.505882, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_right = 55.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme = ExtResource("1_pqc1u")
+script = ExtResource("2_v47xg")
+
+[node name="TooltipText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 8
+text = "Card text"
+horizontal_alignment = 1
+vertical_alignment = 1

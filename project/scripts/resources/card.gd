@@ -39,6 +39,7 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 
 func play(targets: Array[Node], char_stats: CharacterStats) -> void:
 	Events.card_played.emit(self)
+	Events.tooltip_hide_requested.emit()
 	char_stats.mana -= cost
 	var obj_targets = _get_targets(targets)
 	for target in obj_targets:
