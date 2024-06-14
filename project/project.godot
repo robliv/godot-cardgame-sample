@@ -21,6 +21,7 @@ Events="*res://global/events.gd"
 
 [display]
 
+window/stretch/mode="viewport"
 window/dpi/allow_hidpi=false
 
 [editor]
