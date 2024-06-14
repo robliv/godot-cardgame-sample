@@ -18,22 +18,32 @@ script = ExtResource("1_blhvv")
 follow_viewport_enabled = true
 
 [node name="NewGameButton" type="Button" parent="CanvasLayer"]
-offset_left = -60.0
-offset_top = -83.0
-offset_right = 61.0
+offset_left = -62.0
+offset_top = -57.0
+offset_right = 63.0
+offset_bottom = -41.0
+theme = ExtResource("3_xd43y")
+theme_override_styles/normal = ExtResource("4_gv5fv")
+text = "NEW GAME"
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = -63.0
+offset_top = -77.0
+offset_right = 63.0
 offset_bottom = -61.0
 theme = ExtResource("3_xd43y")
 theme_override_styles/normal = ExtResource("4_gv5fv")
-text = "ENTER THE DUNGEON"
+text = "CONTINUE "
 
-[node name="Seed" type="TextEdit" parent="CanvasLayer"]
-offset_left = -59.0
-offset_top = -52.0
-offset_right = 60.0
-offset_bottom = -33.0
+[node name="SeedTextbox" type="TextEdit" parent="CanvasLayer"]
+offset_left = -45.0
+offset_top = -37.0
+offset_right = 45.0
+offset_bottom = -21.0
 theme = ExtResource("3_xd43y")
 theme_override_styles/normal = ExtResource("4_gv5fv")
-placeholder_text = "Seed"
+placeholder_text = "     Set seed"
 context_menu_enabled = false
 drag_and_drop_selection_enabled = false
 middle_mouse_paste_enabled = false

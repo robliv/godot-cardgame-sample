@@ -7,7 +7,11 @@ const LEVEL_SCENE_PATH = "res://scenes/levels/level.tscn"
 func _ready():
 	# Game starts here, loads main menu scene
 	load_main_menu()
-
+	# TODO this is temp stuff
+	#var mapscene = load("res://scenes/levels/testMapGen.tscn")
+	#var mapscene_instance = mapscene.instantiate()
+	#add_child(mapscene_instance)
+	
 func load_main_menu():
 	print("Loading main menu: " + MAIN_MENU_PATH)
 	remove_child_nodes()
@@ -16,6 +20,7 @@ func load_main_menu():
 	scene_instance.current_level = 0
 	add_child(scene_instance)
 	$main_menu.request_next_level.connect(_on_request_load_level)
+	$main_menu.request_map.connect(_on_request_map)
 	
 func load_level(next_level_id):
 	print("Loading level scene: " + LEVEL_SCENE_PATH)
@@ -59,3 +64,11 @@ func _on_request_load_level(next_level_id: int):
 		load_level(next_level_id)
 	else:
 		load_main_menu()
+
+func _on_request_map():
+	print("Received map request")
+	remove_child_nodes()
+	var scene = load("res://scenes/map.tscn")
+	var scene_instance = scene.instantiate()
+	add_child(scene_instance)
+
