@@ -223,8 +223,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnxo5"]
-height = 58.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5v66l"]
+size = Vector2(44, 64)
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 4
@@ -239,8 +239,8 @@ frame_progress = 1.0
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -29)
-shape = SubResource("CapsuleShape2D_hnxo5")
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_5v66l")
 
 [node name="StatsUI" parent="." instance=ExtResource("9_bbert")]
 offset_left = -39.0

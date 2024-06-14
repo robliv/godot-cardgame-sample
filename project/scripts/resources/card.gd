@@ -40,7 +40,9 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 func play(targets: Array[Node], char_stats: CharacterStats) -> void:
 	Events.card_played.emit(self)
 	char_stats.mana -= cost
-	
+	var obj_targets = _get_targets(targets)
+	for target in obj_targets:
+			target.unset_target()
 	if is_single_targeted():
 		for target in targets:
 			target.unset_target()

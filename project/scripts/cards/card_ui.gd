@@ -87,10 +87,12 @@ func _set_char_stats(value: CharacterStats) -> void:
 
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 	if not targets.has(area):
+		area.get_tree().get_nodes_in_group("player")[0].set_target()
 		targets.append(area)
 
 
 func _on_drop_point_detector_area_exited(area: Area2D) -> void:
+	area.get_tree().get_nodes_in_group("player")[0].unset_target()
 	targets.erase(area)
 
 

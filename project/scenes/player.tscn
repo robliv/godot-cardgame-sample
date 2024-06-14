@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cq1spio55fri5"]
+[gd_scene load_steps=32 format=3 uid="uid://cq1spio55fri5"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_nsufn"]
 [ext_resource type="Texture2D" uid="uid://cvmx1k34fct1r" path="res://assets/characters/tempCharacters/Knight_1/IdleFixed.png" id="1_t6b54"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ddjyrv1clc64f" path="res://assets/characters/tempCharacters/Knight_1/Defend.png" id="3_b04l2"]
 [ext_resource type="Texture2D" uid="uid://bl5puq52ejnuc" path="res://assets/characters/tempCharacters/Knight_1/Dead.png" id="3_d7lo4"]
 [ext_resource type="Texture2D" uid="uid://ccaq2rwxon04c" path="res://assets/characters/tempCharacters/Knight_1/Hurt.png" id="3_qplww"]
+[ext_resource type="Texture2D" uid="uid://gfgxb5rvsyok" path="res://assets/attack_border.png" id="8_blshp"]
 [ext_resource type="PackedScene" uid="uid://bqcv8w8hvb124" path="res://scenes/stats_ui.tscn" id="10_mjgra"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i31f5"]
@@ -198,8 +199,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnxo5"]
-height = 58.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwfq1"]
+size = Vector2(44, 64)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_nsufn")
@@ -212,8 +213,8 @@ frame = 5
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -29)
-shape = SubResource("CapsuleShape2D_hnxo5")
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_cwfq1")
 
 [node name="StatsUI" parent="." instance=ExtResource("10_mjgra")]
 clip_contents = true
@@ -222,3 +223,33 @@ offset_top = -81.0
 offset_right = 68.0
 offset_bottom = -49.0
 scale = Vector2(0.5, 0.5)
+
+[node name="AttackIndicator" type="Node2D" parent="."]
+position = Vector2(0, -3)
+
+[node name="AttackBoarder" type="Sprite2D" parent="AttackIndicator"]
+modulate = Color(0.137198, 0.341617, 0.196593, 1)
+position = Vector2(-15, -50)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_blshp")
+
+[node name="AttackBoarder2" type="Sprite2D" parent="AttackIndicator"]
+modulate = Color(0.137198, 0.341617, 0.196593, 1)
+position = Vector2(15, -50)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_blshp")
+
+[node name="AttackBoarder3" type="Sprite2D" parent="AttackIndicator"]
+modulate = Color(0.137198, 0.341617, 0.196593, 1)
+position = Vector2(-15, 0)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_blshp")
+
+[node name="AttackBoarder4" type="Sprite2D" parent="AttackIndicator"]
+modulate = Color(0.137198, 0.341617, 0.196593, 1)
+position = Vector2(15, 0)
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_blshp")
