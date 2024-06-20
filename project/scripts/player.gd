@@ -65,6 +65,7 @@ func take_damage(damage: int) -> void:
 	if stats.health <= 0:
 		return
 	stats.take_damage(damage)
+	trigger_hurt()
 	if stats.health <= 0:
 		die()
 	

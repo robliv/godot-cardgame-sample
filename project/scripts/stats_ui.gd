@@ -1,5 +1,5 @@
 class_name StatsUI
-extends HBoxContainer
+extends VBoxContainer
 
 @onready var block: HBoxContainer = $Block
 @onready var block_label: Label = %BlockLabel

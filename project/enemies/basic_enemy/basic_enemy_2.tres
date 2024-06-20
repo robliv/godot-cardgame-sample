@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://3hvcj1l2pmin"]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="1_485fl"]
+[ext_resource type="PackedScene" uid="uid://bs1d52rufe4qp" path="res://enemies/basic_enemy/basic_enemy_ai.tscn" id="1_hb2et"]
+
+[resource]
+script = ExtResource("1_485fl")
+ai = ExtResource("1_hb2et")
+max_health = 45

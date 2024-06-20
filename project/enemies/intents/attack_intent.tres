@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Intent" load_steps=3 format=3 uid="uid://l6tr0hviia2e"]
+
+[ext_resource type="Script" path="res://scripts/resources/intent.gd" id="1_d0360"]
+[ext_resource type="Texture2D" uid="uid://cjcgmy6u5fhkr" path="res://assets/cards/icons/enemy_attack_intent.png" id="1_f1bkc"]
+
+[resource]
+script = ExtResource("1_d0360")
+number = "4"
+icon = ExtResource("1_f1bkc")

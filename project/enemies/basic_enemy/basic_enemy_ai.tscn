@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bs1d52rufe4qp"]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_action_picker.gd" id="1_dqgsc"]
+[ext_resource type="Script" path="res://enemies/basic_enemy/basic_attack_action.gd" id="2_fnhx5"]
+[ext_resource type="Resource" uid="uid://l6tr0hviia2e" path="res://enemies/intents/attack_intent.tres" id="3_g5nbc"]
+[ext_resource type="Script" path="res://enemies/basic_enemy/basic_block.gd" id="4_ey4fg"]
+[ext_resource type="Resource" uid="uid://c8s33pyvuvqvq" path="res://enemies/intents/block_intent.tres" id="5_ycu13"]
+
+[node name="BasicEnemyAI" type="Node"]
+script = ExtResource("1_dqgsc")
+
+[node name="AttackAction" type="Node" parent="."]
+script = ExtResource("2_fnhx5")
+intent = ExtResource("3_g5nbc")
+type = 1
+isAttacking = true
+chance_weight = 1.0
+
+[node name="BlockAction" type="Node" parent="."]
+script = ExtResource("4_ey4fg")
+intent = ExtResource("5_ycu13")
+type = 1
+chance_weight = 2.0

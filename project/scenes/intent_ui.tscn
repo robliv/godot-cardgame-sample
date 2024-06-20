@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci0x3fgomrb4y"]
+
+[ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="1_vq63u"]
+[ext_resource type="Script" path="res://scenes/intent_ui.gd" id="2_1qjmr"]
+[ext_resource type="Texture2D" uid="uid://cjcgmy6u5fhkr" path="res://assets/cards/icons/enemy_attack_intent.png" id="2_7ksey"]
+
+[node name="IntentUI" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_vq63u")
+script = ExtResource("2_1qjmr")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_7ksey")
+flip_h = true
+
+[node name="Number" type="Label" parent="."]
+modulate = Color(0.613329, 0.0796536, 0.0947178, 1)
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1

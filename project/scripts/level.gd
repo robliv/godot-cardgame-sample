@@ -51,7 +51,6 @@ func _ready():
 
 	seed_label = $CanvasLayer/SeedLabel
 	seed_label.text = "Seed: "+RngManager.current_seed
-	set_enemy_damage()
 	# Connect signals
 	
 	mana_ui._set_char_stats(player.stats)
@@ -68,20 +67,20 @@ func _ready():
 	discard_pile.set_card_pile(player.stats.discard)
 	draw_pile.set_card_pile(player.stats.draw_pile)
 	
-	Events.draw_cards.connect(_draw_cards)
+	Events.draw_cards.connect(draw_cards)
 	
 	call_deferred("player_turn_started")
 	
-	
 func player_turn_started():
-	print("Player turn started")
+	enemy.update_action()
 	update_banner("Player Turn")
 	player.stats.reset_mana()
+	player.stats.block = 0
 	# draw cards
 	
-	_draw_cards(player.stats.cards_per_turn)
+	draw_cards(player.stats.cards_per_turn)
 		
-func _draw_cards(amount: int):
+func draw_cards(amount: int):
 	for n in amount:
 		if(player.stats.draw_pile.empty()):
 			while not player.stats.discard.empty():
@@ -104,14 +103,12 @@ func _on_end_turn_button_pressed():
 
 func enemy_turn():
 	await get_tree().create_timer(0.5).timeout # cinematic pause
-	# damage_player(enemy_strength)
+	enemy.do_turn()
 	player_turn = true
-	set_enemy_damage()
 	call_deferred("player_turn_started")
 
 func damage_player(damage: int):
 	enemy.play_animation("attack")
-	# player.take_damage(enemy_strength)
 	update_banner("Enemy hit you for " + str(damage) + " damage")
 	# check if player still alive
 	if player.stats.health < 0:
@@ -139,13 +136,6 @@ func damage_enemy(damage: int):
 	
 func update_banner(text):
 	banner_label.text = text
-
-# set random strength for enemy attack
-func set_enemy_damage():
-	var base_damage = randi_range(15,30)
-	var total_damage = base_damage + round(current_level * DIFFICULTY_CONSTANT)
-	# enemy_strength_meter.text = "⚔ "+str(total_damage)
-	# enemy_strength = total_damage
 
 func request_post_game_menu():
 	print("Requesting post game screen")

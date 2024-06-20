@@ -10,4 +10,4 @@ type = 1
 target = 0
 cost = 2
 icon = ExtResource("1_e3rjn")
-tooltip_text = "Draw 1 card."
+tooltip_text = "Draw 2 card."

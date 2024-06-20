@@ -5,13 +5,13 @@
 [ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="2_jmorb"]
 [ext_resource type="Texture2D" uid="uid://bc0ui4jubp3s" path="res://assets/cards/icons/hearth.png" id="2_s3prn"]
 
-[node name="StatsUI" type="HBoxContainer"]
+[node name="StatsUI" type="VBoxContainer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -45.0
-offset_right = 45.0
-offset_bottom = 20.0
+offset_left = -48.0
+offset_right = -2.0
+offset_bottom = 68.0
 grow_horizontal = 2
 theme = ExtResource("2_jmorb")
 alignment = 1

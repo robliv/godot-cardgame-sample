@@ -218,10 +218,8 @@ shape = SubResource("RectangleShape2D_cwfq1")
 
 [node name="StatsUI" parent="." instance=ExtResource("10_mjgra")]
 clip_contents = true
-offset_left = -28.0
-offset_top = -81.0
-offset_right = 68.0
-offset_bottom = -49.0
+offset_top = -60.0
+offset_bottom = 8.0
 scale = Vector2(0.5, 0.5)
 
 [node name="AttackIndicator" type="Node2D" parent="."]

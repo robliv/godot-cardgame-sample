@@ -1,11 +1,12 @@
-[gd_scene load_steps=31 format=3 uid="uid://b3fal1tr5tm0n"]
+[gd_scene load_steps=32 format=3 uid="uid://b3fal1tr5tm0n"]
 
 [ext_resource type="Texture2D" uid="uid://2pgxobol5bte" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Idle.png" id="1_6cee6"]
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_t74vh"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_t74vh"]
 [ext_resource type="Texture2D" uid="uid://dujosfls5nrp8" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Attack_1.png" id="2_fqpgi"]
 [ext_resource type="Texture2D" uid="uid://barcyuc157ghc" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Hurt.png" id="4_ovulh"]
 [ext_resource type="Texture2D" uid="uid://bevixdcifc6tx" path="res://assets/characters/tempCharacters/Skeleton_Warrior/Dead.png" id="5_tdrox"]
 [ext_resource type="Texture2D" uid="uid://gfgxb5rvsyok" path="res://assets/attack_border.png" id="7_a222k"]
+[ext_resource type="PackedScene" uid="uid://ci0x3fgomrb4y" path="res://scenes/intent_ui.tscn" id="7_ndil1"]
 [ext_resource type="PackedScene" uid="uid://bqcv8w8hvb124" path="res://scenes/stats_ui.tscn" id="9_bbert"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dcpca"]
@@ -243,10 +244,17 @@ position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_5v66l")
 
 [node name="StatsUI" parent="." instance=ExtResource("9_bbert")]
-offset_left = -39.0
-offset_top = -77.0
-offset_right = 107.0
-offset_bottom = -45.0
+offset_left = 24.0
+offset_top = -62.0
+offset_right = 70.0
+offset_bottom = 6.0
+scale = Vector2(0.5, 0.5)
+
+[node name="IntentUI" parent="." instance=ExtResource("7_ndil1")]
+offset_left = -17.0
+offset_top = -79.0
+offset_right = 51.0
+offset_bottom = -47.0
 scale = Vector2(0.5, 0.5)
 
 [node name="AttackIndicator" type="Node2D" parent="."]

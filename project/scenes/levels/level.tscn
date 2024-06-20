@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3fal1tr5tm0n" path="res://scenes/enemy.tscn" id="4_tbyj5"]
 [ext_resource type="Theme" uid="uid://d1b5jw5e7ipk8" path="res://themes/text_theme.tres" id="5_fuffh"]
 [ext_resource type="Script" path="res://scripts/hand.gd" id="6_m648t"]
-[ext_resource type="Resource" uid="uid://bajj1bjvkp1ah" path="res://enemies/basic_enemy/basic_enemy.tres" id="6_w1u6o"]
+[ext_resource type="Resource" uid="uid://3hvcj1l2pmin" path="res://enemies/basic_enemy/basic_enemy_2.tres" id="6_noj0e"]
 [ext_resource type="PackedScene" uid="uid://n0oe3yw1kh1r" path="res://scenes/mana.tscn" id="7_ighbd"]
 [ext_resource type="PackedScene" uid="uid://brw27jx0n5hvs" path="res://scenes/card_target_selector.tscn" id="7_tx7vl"]
 [ext_resource type="Script" path="res://scenes/card_pile_ui.gd" id="11_72ynn"]
@@ -41,7 +41,7 @@ stats = ExtResource("4_1sc41")
 
 [node name="Enemy" parent="." instance=ExtResource("4_tbyj5")]
 position = Vector2(85, 18)
-stats = ExtResource("6_w1u6o")
+stats = ExtResource("6_noj0e")
 
 [node name="CardDropArea" type="Area2D" parent="."]
 position = Vector2(16, -12)
